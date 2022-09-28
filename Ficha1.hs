@@ -1,3 +1,4 @@
+import Distribution.Simple.Utils (xargs)
 --1.1
 testaTriangulo :: Float -> Float -> Float -> Bool
 testaTriangulo a b c = (a < b + c) && (b < a + c) && (c < a + b)
@@ -82,3 +83,44 @@ minuscula x = x >= 'a' && x <= 'z'
 
 intervalo :: Ord a => a -> a -> a -> Bool
 intervalo x a b = x >= a && x <= b
+
+palindromo :: Eq a => [a] -> Bool
+palindromo xs = reverse xs == xs
+
+twice :: (t -> t) -> t -> t
+twice f x=f (f x)
+
+--1.9
+classifica :: Int -> String
+classifica a = 
+    if a < 0 || a > 20
+        then "erro"
+    else if a <= 9 then "reprovado"
+    else if a <= 12 then "suficiente"
+    else if a <= 15 then "bom"
+    else if a <= 18 then "muito bom"
+    else if a <= 20 then "muito bom e com distinção"
+    else "erro"
+
+--1.9 with guards
+classifica1 :: Int -> String
+classifica1 a
+  | a < 0 || a > 20 = "erro"
+  | a <= 9 = "reprovado"
+  | a <= 12 = "suficiente"
+  | a <= 15 = "bom"
+  | a <= 18 = "muito bom"
+  | a <= 20 = "muito bom e com distinção"
+  | otherwise = "erro"
+
+--1.10
+classificaIMC :: Float -> Float -> String
+classificaIMC a b  
+    | imc < 18.5 = "baixo peso"
+    | imc < 25 = "peso normal"
+    | imc < 30 = "excesso de peso"
+    | otherwise = "obesidade"
+    where imc = a / (b * b)
+
+--1.1 a)
+
