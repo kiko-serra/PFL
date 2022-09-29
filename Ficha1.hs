@@ -122,5 +122,5 @@ classificaIMC a b
     | otherwise = "obesidade"
     where imc = a / (b * b)
 
---1.1 a)
+--1.11 a)
 
