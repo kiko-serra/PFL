@@ -142,3 +142,11 @@ cifrar :: Int -> String -> String
 cifrar n xs = [cifrarLetra n l | l <- xs]
 
 --2.16
+myconcatlist :: [[a]] -> [a]
+myconcatlist xss = [x | xs <- xss , x <- xs]
+
+myreplicatelist :: Int -> a -> [a]
+myreplicatelist n x = [x | _ <- [1..n]]
+
+myindexlist :: [a] -> Int -> a
+myindexlist xs n = head [x | (x,y) <- zip xs [0..n], y==n]
