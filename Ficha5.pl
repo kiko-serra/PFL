@@ -82,3 +82,4 @@ mother(X,Y) :- parent(X,Y), female(X).
 grandparent(X,Y) :- parent(X,Z), parent(Z,Y).
 grandfather(X,Y) :- grandparent(X,Y), male(X).
 grandmother(X,Y) :- grandparent(X,Y), female(X).
+
