@@ -1,5 +1,5 @@
 % to load
-% use consult('Ficha5.pl')
+% use consult('ex1.pl')
 
 %gender
 
@@ -77,9 +77,24 @@ parent(dylan, poppy).
 parent(haley, poppy).
 
 %rules
-father(X,Y) :- parent(X,Y), male(X).
-mother(X,Y) :- parent(X,Y), female(X).
-grandparent(X,Y) :- parent(X,Z), parent(Z,Y).
-grandfather(X,Y) :- grandparent(X,Y), male(X).
-grandmother(X,Y) :- grandparent(X,Y), female(X).
+father(X,Y):- parent(X,Y), male(X).
+mother(X,Y):- parent(X,Y), female(X).
+grandfather(X,Y):- parent(X,Z), parent(Z,Y), male(X).
+grandmother(X,Y):- parent(X,Z), parent(Z,Y), female(X).
+sibling(X,Y):- parent(P1,X), parent(P1,Y), parent(P2,X), parent(P2,Y), (X\=Y), (P1\=P2).
+brother(X,Y):- sibling(X,Y), male(X).
+sister(X,Y):- sibling(X,Y), female(X).
+halfSibling(X,Y):- \+ sibling(X,Y), parent(P1,X), parent(P1,Y), (X\=Y).
+cousins(X,Y):- parent(PX, X), parent(PY, Y), sibling(PX,PY), (X\=Y), (PX\=PY).
+genderlessUncle(X,Y):- parent(PY,Y), sibling(PY,X).
+uncle(X,Y):- genderlessUncle(X,Y), male(X).
+aunt(X,Y):- genderlessUncle(X,Y), female(X).
 
+% marriages and divorces
+married(jay, gloria, 2008).
+married(jay, dede, 1968).
+divorced(jay, dede, 2003).
+
+% bonus
+married(A,B,Y):- married(B,A,Y).
+divorced(A,B,Y):- divorced(B,A,Y).
