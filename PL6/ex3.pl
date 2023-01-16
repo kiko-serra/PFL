@@ -17,8 +17,7 @@ chefiado_por(supervisor, supervisor_chefe).
 chefiado_por(supervisor_chefe, diretor).
 chefiado_por(secretaria_exec, diretor).
 
+chefe(X,Y):- cargo(Cx, X), cargo(Cy, Y), chefiado_por(Cx,Cy).
 
-% chefiado_por(analista, X), cargo(X, sisnando): Sisnando chefia analista? Se sim, qual o seu cargo?
-% chefiado_por(tecnico, X), chefiado_por(X, Y): Os cargos que chefeiam tecnico e que são chefiados por outros cargos
-% cargo(J, P), chefiado_por(J, supervisor): Os cargos são chefiados por um supervisor  e as pessoas que tem esse cargo 
-% chefiado_por(P, diretor), \+(cargo(P, felismina)): Os cargos chefiados pelo diretor e que não sejam ocupados pela felismina
+superior(X,Y):-chefe(Y,X).
+superior(X,Y):-chefe(Y,Z), superior(X,Z).
